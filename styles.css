@@ -12,18 +12,25 @@ body{
 
 .board{
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    background-color: lightgreen;
     width: 80vh;
     height: 80vh;
 }
 
+.row{
+    width: 100%;
+    height: 33.2%;
+}
+
 .board-tile{
     --main-border: 1px solid black;
-
+    
+    float: left;
     width: 33%;
-    height: 33%;
+    height: 100%;
     background-color: aqua;
+    border: 1px solid aqua;
 }
 
 #top-center{

@@ -30,9 +30,9 @@ body{
 }
 
 .board-tile{
-    
     width: 30%;
     height: 100%;
+    box-sizing: border-box;
     background-color: aqua;
 }
 
@@ -46,7 +46,6 @@ body{
     border-right: var(--main-border);
     border-left: var(--main-border);
     border-top: var(--main-border);
-    
 }
 
 #center-left{

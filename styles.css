@@ -30,6 +30,10 @@ body{
 }
 
 .board-tile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 30%;
     height: 100%;
     box-sizing: border-box;
@@ -38,13 +42,19 @@ body{
     cursor: crosshair;
 }
 
-#top-center{
+span{
+    font-family: 'arial';
+    font-weight: bold;
+    font-size: 8em;
+}
+
+#top-middle{
     border-right: var(--main-border);
     border-left: var(--main-border);
     border-bottom: var(--main-border);
 }
 
-#bottom-center{
+#bottom-middle{
     border-right: var(--main-border);
     border-left: var(--main-border);
     border-top: var(--main-border);

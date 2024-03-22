@@ -10,13 +10,11 @@ for (let tile of document.querySelectorAll(".board-tile")){
 
 function handleClick(event){
     let curID = event.currentTarget.getAttribute("id");
-    console.log(`Clicked ${curID}`);
 
     let firstInd;
     let secondInd;
     let numTilesFull = 0;
 
-    //maybe use a map
     for (let i = 0; i < boardVals.length; i++){
         for (let j = 0; j < boardVals[i].length; j++){
             if (boardVals[i][j] != -1){
@@ -53,5 +51,13 @@ function handleClick(event){
 }
 
 function resetBoard(){
-    
+    boardVals = [[-1,-1,-1], 
+                 [-1,-1,-1], 
+                 [-1,-1,-1]];
+
+    let tiles = document.querySelectorAll("span");
+
+    tiles.forEach((element) => {
+        element.textContent = "";
+    });
 }

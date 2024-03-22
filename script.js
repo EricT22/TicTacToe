@@ -48,7 +48,7 @@ function handleClick(event){
     }
 
     boardVals[firstInd][secondInd] = (turn % 2 == 0) ? 0 : 1;
-    document.getElementById(curID).children[0].textContent = (turn % 2 == 0) ? "X" : "O";
+    document.getElementById(curID).firstElementChild.textContent = (turn % 2 == 0) ? "X" : "O";
     turn++;
 }
 

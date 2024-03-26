@@ -96,8 +96,14 @@ function checkWin(){
 
     for (let i = 0; i < 3; i++){
         if (boardVals[0][i] == curPiece && boardVals[1][i] == curPiece && boardVals[2][i] == curPiece){
-            //highlight column
+            let curCol = getKeyFromVal(colIdToIndex, i);
+            let spans = document.querySelectorAll(`#top-${curCol} > span, #center-${curCol} > span, #bottom-${curCol} > span`);
 
+            spans.forEach((element) => {
+                element.style.color = "red";
+            });
+
+            gameOverByWin = true;
             return;
         }
     }

@@ -29,27 +29,8 @@ function handleClick(event){
 
     let curID = event.currentTarget.getAttribute("id");
 
-    let firstInd;
-    let secondInd;
-
-    // use maps here
-    //let firstInd = rowIdToIndex[curID.slice(0, curID.indexOf('-'))];
-    //let secondInd = colIdToIndex[curID.slice(curID.indexOf('-') + 1)];
-    if (curID.includes("top")){
-        firstInd = 0;
-    } else if (curID.includes("center")) {
-        firstInd = 1;
-    } else {
-        firstInd = 2;
-    }
-
-    if (curID.includes("left")){
-        secondInd = 0;
-    } else if (curID.includes("middle")) {
-        secondInd = 1;
-    } else {
-        secondInd = 2;
-    }
+    let firstInd = rowIdToIndex[curID.slice(0, curID.indexOf('-'))];
+    let secondInd = colIdToIndex[curID.slice(curID.indexOf('-') + 1)];
 
     if (boardVals[firstInd][secondInd] == -1) {
         boardVals[firstInd][secondInd] = (turn % 2 == 0) ? 0 : 1;

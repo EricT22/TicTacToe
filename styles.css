@@ -1,3 +1,5 @@
+/* TODO: add linear gradient under spans, display it when winning instead of changing the color*/
+
 /* *{
     outline: 1px solid #f00 !important
 } */
@@ -43,6 +45,7 @@ body{
 }
 
 span{
+    /* TODO: find better font */
     font-family: 'arial';
     font-weight: bold;
     font-size: 8em;

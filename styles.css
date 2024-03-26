@@ -45,8 +45,7 @@ body{
 }
 
 span{
-    /* TODO: find better font */
-    font-family: 'arial';
+    font-family: 'Varela Round', 'arial';
     font-weight: bold;
     font-size: 8em;
 }

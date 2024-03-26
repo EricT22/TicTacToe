@@ -1,8 +1,19 @@
+const rowIdToIndex = new Map();
+rowIdToIndex["top"] = 0;
+rowIdToIndex["center"] = 1;
+rowIdToIndex["bottom"] = 2;
+
+const colIdToIndex = new Map();
+colIdToIndex["left"] = 0;
+colIdToIndex["middle"] = 1;
+colIdToIndex["right"] = 2;
+
 let boardVals = [[-1,-1,-1], 
                  [-1,-1,-1], 
                  [-1,-1,-1]];
 
-let gameOver = false;
+let gameOverByWin = false;
+let numTilesFull = 0;
 let turn = 0; // 0 for X, 1 for O
 
 
@@ -11,21 +22,7 @@ for (let tile of document.querySelectorAll(".board-tile")){
 }
 
 function handleClick(event){
-    if (gameOver){
-        resetBoard();
-        return;
-    }
-    let numTilesFull = 0;
-    
-    for (let i = 0; i < boardVals.length; i++){
-        for (let j = 0; j < boardVals[i].length; j++){
-            if (boardVals[i][j] != -1){
-                numTilesFull++;
-            }
-        }
-    }
-    
-    if (numTilesFull == 9){
+    if (gameOverByWin || numTilesFull == 9){
         resetBoard();
         return;
     }
@@ -35,7 +32,9 @@ function handleClick(event){
     let firstInd;
     let secondInd;
 
-
+    // use maps here
+    //let firstInd = rowIdToIndex[curID.slice(0, curID.indexOf('-'))];
+    //let secondInd = colIdToIndex[curID.slice(curID.indexOf('-') + 1)];
     if (curID.includes("top")){
         firstInd = 0;
     } else if (curID.includes("center")) {
@@ -58,6 +57,7 @@ function handleClick(event){
         
         checkWin();
         turn++;
+        numTilesFull++;
     }
 }
 
@@ -74,7 +74,8 @@ function resetBoard(){
     });
 
     turn = 0;
-    gameOver = false;
+    gameOverByWin = false;
+    numTilesFull = 0;
 }
 
 function checkWin(){
@@ -82,8 +83,13 @@ function checkWin(){
     
     for (let i = 0; i < 3; i++){
         if (boardVals[i][0] == curPiece && boardVals[i][1] == curPiece && boardVals[i][2] == curPiece){
-            //highlight row
+            let spans = document.querySelectorAll(`#${getKeyFromVal(rowIdToIndex, i)} > div > span`);
 
+            spans.forEach((element) => {
+                element.style.color = "red";
+            });
+
+            gameOverByWin = true;
             return;
         }
     }
@@ -98,19 +104,27 @@ function checkWin(){
 
     if (boardVals[0][0] == curPiece && boardVals[1][1] == curPiece && boardVals[2][2] == curPiece){
         let spans = document.querySelectorAll("#top-left > span, #center-middle > span, #bottom-right > span");
-        console.log(spans);
 
         spans.forEach((element) => {
             element.style.color = "red";
         });
 
-        gameOver = true;
+        gameOverByWin = true;
         return;
     }
     
     if (boardVals[0][2] == curPiece && boardVals[1][1] == curPiece && boardVals[2][0] == curPiece){
-        //highlight diag
+        let spans = document.querySelectorAll("#top-right > span, #center-middle > span, #bottom-left > span");
 
+        spans.forEach((element) => {
+            element.style.color = "red";
+        });
+
+        gameOverByWin = true;
         return;
     }
+}
+
+function getKeyFromVal(obj, value){
+    return Object.keys(obj).find(key => obj[key] === value);
 }

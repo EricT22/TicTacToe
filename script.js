@@ -66,12 +66,7 @@ function checkWin(){
         if (boardVals[i][0] == curPiece && boardVals[i][1] == curPiece && boardVals[i][2] == curPiece){
             let spans = document.querySelectorAll(`#${getKeyFromVal(rowIdToIndex, i)} > div > span`);
 
-            spans.forEach((element) => {
-                element.style.color = "red";
-            });
-
-            gameOverByWin = true;
-            return;
+            return changeTextOnWin(spans);
         }
     }
 
@@ -80,36 +75,29 @@ function checkWin(){
             let curCol = getKeyFromVal(colIdToIndex, i);
             let spans = document.querySelectorAll(`#top-${curCol} > span, #center-${curCol} > span, #bottom-${curCol} > span`);
 
-            spans.forEach((element) => {
-                element.style.color = "red";
-            });
-
-            gameOverByWin = true;
-            return;
+            return changeTextOnWin(spans);
         }
     }
 
     if (boardVals[0][0] == curPiece && boardVals[1][1] == curPiece && boardVals[2][2] == curPiece){
         let spans = document.querySelectorAll("#top-left > span, #center-middle > span, #bottom-right > span");
 
-        spans.forEach((element) => {
-            element.style.color = "red";
-        });
-
-        gameOverByWin = true;
-        return;
+        return changeTextOnWin(spans);
     }
     
     if (boardVals[0][2] == curPiece && boardVals[1][1] == curPiece && boardVals[2][0] == curPiece){
         let spans = document.querySelectorAll("#top-right > span, #center-middle > span, #bottom-left > span");
-
-        spans.forEach((element) => {
-            element.style.color = "red";
-        });
-
-        gameOverByWin = true;
-        return;
+        
+        return changeTextOnWin(spans);
     }
+}
+
+function changeTextOnWin(spans){
+    spans.forEach((element) => {
+        element.style.color = "red";
+    });
+
+    gameOverByWin = true;
 }
 
 function getKeyFromVal(obj, value){
